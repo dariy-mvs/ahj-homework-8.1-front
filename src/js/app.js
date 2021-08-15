@@ -58,6 +58,12 @@ ws.addEventListener('message', (evt) => {
       addChatMan(elt, false);
     }
   });
+  oldNames.forEach((elt) => {
+    const actualNameInPage = names.some((el) => elt.textContent === el);
+    if (!actualNameInPage) {
+      elt.remove();
+    }
+  });
 });
 
 ws.addEventListener('close', () => {
