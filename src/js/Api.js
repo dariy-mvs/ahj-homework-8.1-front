@@ -1,6 +1,6 @@
 export default class Api {
   static getNamesApi() {
-    return fetch('http://localhost:7070/getnames', {
+    return fetch('https://t1hw8.herokuapp.com/getnames', {
       method: 'GET',
     }).then((response) => response.json());
   }
@@ -11,7 +11,7 @@ export default class Api {
   }
 
   nameIsFree() {
-    return fetch('http://localhost:7070/username', {
+    return fetch('https://t1hw8.herokuapp.com/username', {
       method: 'POST',
       body: this.form,
     }).then((response) => response.json()).then((response) => response.nameIsFree);
@@ -20,14 +20,14 @@ export default class Api {
   messageSend() {
     this.form.append('username', this.author);
     this.form.append('time', new Date());
-    return fetch('http://localhost:7070/setmessage', {
+    return fetch('https://t1hw8.herokuapp.com/setmessage', {
       method: 'POST',
       body: this.form,
     }).then((response) => response.json());
   }
 
   deleteName() {
-    return fetch('http://localhost:7070/deletename', {
+    return fetch('https://t1hw8.herokuapp.com/deletename', {
       method: 'POST',
       body: JSON.stringify({ name: this.author }),
     }).then((response) => response.json());
