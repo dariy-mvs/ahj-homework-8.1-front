@@ -18,7 +18,7 @@ function deleteNameApi() {
   api.deleteName(myName);
 }
 
-const ws = new WebSocket('ws://localhost:7070/ws');
+const ws = new WebSocket('ws://t1hw8.herokuapp.com/ws');
 
 ws.addEventListener('open', () => {
   // console.log('connected');
