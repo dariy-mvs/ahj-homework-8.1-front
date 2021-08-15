@@ -1,4 +1,4 @@
-export default function addChatMan(name, itsMyName) {
+export default function addChatMan(name, isMyName) {
   const userName = name;
   let nameLetters = userName.split(' ');
   nameLetters = nameLetters.map((el) => el.slice(0, 1)).join('');
@@ -6,7 +6,7 @@ export default function addChatMan(name, itsMyName) {
   userMini.className = 'chat__man';
   userMini.innerHTML = `<div class="chat__man_mini">${nameLetters}</div>
     <div class="chat__man_name">${userName}</div>`;
-  if (itsMyName) {
+  if (isMyName) {
     userMini.querySelector('.chat__man_name').classList.add('my_name');
   }
   document.querySelector('.chat__peoples').insertAdjacentElement('beforeend', userMini);

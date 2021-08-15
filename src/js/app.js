@@ -1,6 +1,7 @@
 import Modal from './Modal';
 import Chat from './Chat';
 import Api from './Api';
+import addChatMan from './addChatMan';
 
 const modal = new Modal();
 
@@ -26,8 +27,13 @@ ws.addEventListener('open', () => {
 });
 
 ws.addEventListener('message', (evt) => {
-  const newMessages = JSON.parse(evt.data);
+  // получаем пользователей и сообщения
+  const resp = JSON.parse(evt.data);
+  const { messages: newMessages, names } = resp;
   const oldMessages = [...document.querySelectorAll('.chat__message')];
+  const oldNames = [...document.querySelectorAll('.chat__man_name')];
+
+  // ищем новые сообщения
   newMessages.forEach((elt) => {
     const {
       author, text, time, messageId,
@@ -42,6 +48,14 @@ ws.addEventListener('message', (evt) => {
 
         // console.log('my name is empty');
       }
+    }
+  });
+
+  // ищем новых пользователей
+  names.forEach((elt) => {
+    const nameInPage = oldNames.some((el) => el.textContent === elt);
+    if (!nameInPage) {
+      addChatMan(elt, false);
     }
   });
 });
