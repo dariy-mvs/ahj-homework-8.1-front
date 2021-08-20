@@ -61,7 +61,7 @@ ws.addEventListener('message', (evt) => {
   oldNames.forEach((elt) => {
     const actualNameInPage = names.some((el) => elt.textContent === el);
     if (!actualNameInPage) {
-      elt.remove();
+      elt.closest('.chat__man').remove();
     }
   });
 });
